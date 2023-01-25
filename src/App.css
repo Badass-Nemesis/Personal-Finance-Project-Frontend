@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.name{
+  font-weight: bold;
+  justify-content:center;
+  display: flex;
+  margin: 10px;
+  padding-bottom: 50px;
+}
