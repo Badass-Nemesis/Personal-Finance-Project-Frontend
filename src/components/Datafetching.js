@@ -5,7 +5,7 @@ function Datafetching (){
     const [post, setPost] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/category')
+        axios.get('http://localhost:5000/api/category')
         .then(res => {
             console.log(res)
             setPost(res.data)
@@ -16,7 +16,7 @@ function Datafetching (){
     }, [])
         return (
             <div>
-                <ul>
+                
                     {
                         post.map(
                             post => (
@@ -35,15 +35,13 @@ function Datafetching (){
                                                         </li>
                                                     </div>
                                                 )
-                                            }
-                                        )
-                                    }
+                                            })}
                                 </ol>
                                 </li>
                             )
                         )
                     }
-                </ul>
+
             </div>
   )
 }
