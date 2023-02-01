@@ -3,11 +3,22 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 
 function Transactions() {
     const [post, setPost] = useState([])
     const [selectedName, setSelectedName] = useState("");
+    const [names, setNames] = useState([]);
 
 
     //fetching data from api
@@ -73,6 +84,33 @@ function Transactions() {
         background: "#c83f49",
     };
 
+    //CATEGORY NAME FETCH RR RHA HAI!
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/category')
+            .then(response => {
+                setNames(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
+
+    //Narration box handle click
+
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+
 
     return (
         <div>
@@ -85,6 +123,7 @@ function Transactions() {
                     <th>Transaction Type</th>
                     <th>Categories</th>
                     <th>Delete</th>
+                    <th>Details</th>
                 </tr>
                 {post.map(post => {
                     return (
@@ -103,9 +142,10 @@ function Transactions() {
                                                     <button class="dropbtn">Categories</button>
                                                     <div class="dropdown-content">
                                                         <select value={selectedName} onChange={handleChange}>
-                                                            <option value="">Select a name</option>
-                                                            <option value="shopping">shopping</option>
-                                                            <option value="electronic">electronic</option>
+                                                            {names.map(name => (
+                                                                <option key={name.name} value={name.name}>{name.name}</option>
+                                                            ))}
+
                                                         </select>
                                                         <button onClick={() => handleSubmit(post._id)}>Submit</button>
                                                     </div>
@@ -117,14 +157,41 @@ function Transactions() {
                                 <td>
                                     <button onClick={() => handleRemove(post.referenceNumber)}><DeleteIcon /></button>
                                 </td>
+                                <td>
+                                    <div>
+                                        <Button variant="outlined" onClick={handleClickOpen}>
+                                            <ExpandMoreIcon />
+                                        </Button>
+                                        <Dialog
+                                            fullScreen={fullScreen}
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="responsive-dialog-title"
+                                        >
+                                            <DialogTitle id="responsive-dialog-title">
+                                                {"Transaction Details"}
+                                            </DialogTitle>
+                                            <DialogContent>
+                                                <DialogContentText>
+                                                    {post.narration}
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClose} autoFocus>
+                                                    OK
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     )
                 })}
                 <button
                     style={styles}
-                    // onMouseEnter={() => setBgColour("#c83f49")}
-                    // onMouseLeave={() => setBgColour("#fafafa")}
+                // onMouseEnter={() => setBgColour("#c83f49")}
+                // onMouseLeave={() => setBgColour("#fafafa")}
                 >
                     {" "}
                     Add

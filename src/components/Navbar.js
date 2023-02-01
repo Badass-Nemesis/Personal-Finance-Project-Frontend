@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,9 +7,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route } from 'react-router-dom';
+import Addnewtransaction from './Addnewtransaction';
 
 function OffcanvasExample() {
+
+    
     return (
+
+
         <>
             {[false].map((expand) => (
                 <Navbar key={expand} bg="light" expand={expand} className="mb-3">
@@ -28,7 +35,7 @@ function OffcanvasExample() {
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     <Nav.Link href="#action1">Home</Nav.Link>
-                                    <Nav.Link href="#action2">Link</Nav.Link>
+                                    <Route path="/Addnewtransaction" component={Addnewtransaction}/>
                                     <NavDropdown
                                         title="Dropdown"
                                         id={`offcanvasNavbarDropdown-expand-${expand}`}
