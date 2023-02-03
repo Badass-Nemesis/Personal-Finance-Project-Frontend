@@ -3,6 +3,7 @@ import './App.css';
 import Transactions from './components/Transactions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
+// import Addnewtransaction from './components/Addnewtransaction';
 
 function App() {
   return (

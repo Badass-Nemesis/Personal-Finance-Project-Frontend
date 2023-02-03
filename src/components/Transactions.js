@@ -12,14 +12,26 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 
 function Transactions() {
     const [post, setPost] = useState([])
     const [selectedName, setSelectedName] = useState("");
     const [names, setNames] = useState([]);
-
 
     //fetching data from api
     useEffect(() => {
@@ -32,7 +44,7 @@ function Transactions() {
                 console.log(err)
             })
     }, [])
-    //on click button funcnality
+    //on click button funcnalityeeeeeeee
 
     const handleChange = (event) => {
         setSelectedName(event.target.value);
@@ -67,22 +79,23 @@ function Transactions() {
             });
             await response.json();
             //console.log(data);
+            //Auto Reload
             window.location.reload();
         } catch (error) {
             console.error(error);
         }
     };
 
-    const styles = {
-        width: "100px",
-        fontSize: "20px",
-        borderRadius: "40px",
-        border: "1px solid black",
-        color: "white",
-        margin: "0.5em 1em",
-        padding: "0.25em 1em",
-        background: "#c83f49",
-    };
+    // const styles = {
+    //     width: "100px",
+    //     fontSize: "20px",
+    //     borderRadius: "40px",
+    //     border: "1px solid black",
+    //     color: "white",
+    //     margin: "0.5em 1em",
+    //     padding: "0.25em 1em",
+    //     background: "#c83f49",
+    // };
 
     //CATEGORY NAME FETCH RR RHA HAI!
 
@@ -105,9 +118,50 @@ function Transactions() {
         setOpen(true);
     };
 
+    //Add transaction Page
+
     const handleClose = () => {
         setOpen(false);
     };
+
+    const [drawer, setDrawer] = React.useState(false);
+
+    const handleClickOpenDrawer = () => {
+        setDrawer(true);
+    };
+
+    const handleCloseDrawer = () => {
+        setDrawer(false);
+    };
+
+
+    const [inputValues, setInputValues] = useState({
+        name: '',
+        dateAndTime: '',
+        narration: '',
+        amount: '',
+        transactionType: '',
+        referenceNumber: '',
+        availableBalance: '',
+        beneficiaryAccountNumber: '',
+        beneficiaryName: '',
+        remitterAccountNumber: '',
+        remitterName: '',
+    });
+
+    const handleChangeTransaction = (event) => {
+
+        setInputValues({
+            ...inputValues,
+            [event.target.name]: event.target.value,
+        });
+    }
+
+    const handleSubmitTransaction = (event) => {
+        event.preventDefault();
+        const json = JSON.stringify(inputValues);
+        console.log(json);
+    }
 
 
 
@@ -188,17 +242,153 @@ function Transactions() {
                         </tbody>
                     )
                 })}
-                <button
+                {/* <button
                     style={styles}
                 // onMouseEnter={() => setBgColour("#c83f49")}
                 // onMouseLeave={() => setBgColour("#fafafa")}
                 >
                     {" "}
                     Add
-                </button>
+                </button> */}
             </Table>
+            <div className='fixedbutton'>
+                <Button variant="outlined" onClick={handleClickOpenDrawer}>
+                    <Fab color="primary" aria-label="add">
+                        <AddIcon />
+                    </Fab>
+                </Button>
+            </div>
+            <Dialog
+                fullScreen
+                open={drawer}
+                onClose={handleCloseDrawer}
+                TransitionComponent={Transition}
+            >
+                <AppBar sx={{ position: 'relative' }}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={handleCloseDrawer}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                            Add New Transaction
+                        </Typography>
+                        <Button autoFocus color="inherit" onClick={handleSubmitTransaction}>
+                            save
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+                <div className='drawer'>
+                    <Box
+                        sx={{
+                            width: 500,
+                            maxWidth: '100%',
+                            '& .MuiTextField-root': { m: 1, width: '55ch' },
+                        }}
+                        autoComplete="off"
+                    >
+                        <TextField
+
+                            id="name"
+                            label="Name"
+                            type='string'
+                            value={inputValues.name}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                        <TextField
+                            required
+                            id="outlined-basic"
+                            label="Date & Time"
+                            variant="outlined"
+                            type='time'
+                            value={inputValues.dateAndTime}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr />
+                        <TextField
+                            required
+                            label="Narration"
+                            multiline
+                            rows={6}
+                            type='string'
+                            id="narration"
+                            value={inputValues.narration}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr />
+                        <TextField
+                            required
+                            label="Amount"
+                            id="outlined-basic"
+                            type='number'
+                            value={inputValues.amount}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr />
+                        <TextField
+                            required
+                            label="Transaction-Type"
+                            id="outlined-basic"
+                            
+                            value={inputValues.transactionType}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr />
+                        <TextField
+                            required
+                            label="Benificiary Name"
+                            type='string'
+                            id='Benificary Name'
+                            value={inputValues.beneficiaryName}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                        <TextField
+                            required
+                            label="Beneficiary Account Number"
+                            type='number'
+                            id='Beneficiary Account Number'
+                            value={inputValues.beneficiaryAccountNumber}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                        <TextField
+                            required
+                            label="Reference Number"
+                            type='number'
+                            id='Reference Number'
+                            value={inputValues.referenceNumber}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                        <TextField
+                            required
+                            label="Available Balance"
+                            type='number'
+                            id='Balance'
+                            value={inputValues.availableBalance}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                        <TextField
+                            required
+                            label="Sender's Name"
+                            type='string'
+                            id='Senders Name'
+                            value={inputValues.remitterName}
+                            onChange={handleChangeTransaction}
+                        />
+                        <hr/>
+                    </Box>
+                </div>
+            </Dialog>
         </div>
     )
 }
 
-export default Transactions
+export default Transactions;

@@ -7,12 +7,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route } from 'react-router-dom';
-import Addnewtransaction from './Addnewtransaction';
+// import { Route } from 'react-router-dom';
+//import Addnewtransaction from './Addnewtransaction';
+// import * as Addnewtransaction from "./Addnewtransaction.js";
+//import { Route, useNavigate, Routes } from "react-router-dom"
+
+
 
 function OffcanvasExample() {
 
-    
+
     return (
 
 
@@ -34,8 +38,8 @@ function OffcanvasExample() {
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Nav.Link href="#action1">Home</Nav.Link>
-                                    <Route path="/Addnewtransaction" component={Addnewtransaction}/>
+                                    <Nav.Link href="">Home</Nav.Link>
+                                    
                                     <NavDropdown
                                         title="Dropdown"
                                         id={`offcanvasNavbarDropdown-expand-${expand}`}

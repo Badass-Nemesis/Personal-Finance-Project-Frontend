@@ -87,3 +87,15 @@ th{
 .accordian{
   width: 50px;
 }
+
+.fixedbutton {
+  position: fixed;
+  bottom: 60px;
+  right: 60px; 
+}
+
+.drawer{
+  margin-top: 10px;
+  margin-left: 600px;
+  margin-right: 10px;
+}
