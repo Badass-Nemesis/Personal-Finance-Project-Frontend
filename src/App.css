@@ -96,6 +96,11 @@ th{
 
 .drawer{
   margin-top: 10px;
-  margin-left: 600px;
+  margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 45px;
+}
+
+.form{
+  margin: 0px;
 }

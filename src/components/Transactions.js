@@ -20,8 +20,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
+// import Box from '@mui/material/Box';
+import Form from './Form';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -135,114 +137,101 @@ function Transactions() {
     };
 
 
-    const [inputValues, setInputValues] = useState({
-        name: '',
-        dateAndTime: '',
-        narration: '',
-        amount: '',
-        transactionType: '',
-        referenceNumber: '',
-        availableBalance: '',
-        beneficiaryAccountNumber: '',
-        beneficiaryName: '',
-        remitterAccountNumber: '',
-        remitterName: '',
-    });
-
-    const handleChangeTransaction = (event) => {
-
-        setInputValues({
-            ...inputValues,
-            [event.target.name]: event.target.value,
-        });
-    }
-
-    const handleSubmitTransaction = (event) => {
-        event.preventDefault();
-        const json = JSON.stringify(inputValues);
-        console.log(json);
-    }
+    // const [inputValues, setInputValues] = useState({
+    //     name: '',
+    //     dateAndTime: '',
+    //     narration: '',
+    //     amount: '',
+    //     transactionType: '',
+    //     referenceNumber: '',
+    //     availableBalance: '',
+    //     beneficiaryAccountNumber: '',
+    //     beneficiaryName: '',
+    //     remitterAccountNumber: '',
+    //     remitterName: '',
+    // });
 
 
 
 
-    return (
-        <div>
-            <Table striped bordered hover variant="dark" responsive="sm">
-                <tr>
-                    <th>Amount</th>
-                    <th>Date And Time</th>
-                    <th>Reference Number</th>
-                    <th>To</th>
-                    <th>Transaction Type</th>
-                    <th>Categories</th>
-                    <th>Delete</th>
-                    <th>Details</th>
-                </tr>
-                {post.map(post => {
-                    return (
-                        <tbody>
-                            <tr>
-                                <td>{post.amount}</td>
-                                <td>{moment.utc(post.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
-                                <td>{post.referenceNumber}</td>
-                                <td>{post.beneficiaryName}</td>
-                                <td>{post.transactionType}</td>
-                                <td>
-                                    <div>
-                                        {
-                                            !post.categoryName.length > 0 ?
-                                                <div class="dropdown">
-                                                    <button class="dropbtn">Categories</button>
-                                                    <div class="dropdown-content">
-                                                        <select value={selectedName} onChange={handleChange}>
-                                                            {names.map(name => (
-                                                                <option key={name.name} value={name.name}>{name.name}</option>
-                                                            ))}
 
-                                                        </select>
-                                                        <button onClick={() => handleSubmit(post._id)}>Submit</button>
+        return (
+            <div>
+                <Table striped bordered hover variant="dark" responsive="sm">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Date And Time</th>
+                        <th>Reference Number</th>
+                        <th>To</th>
+                        <th>Transaction Type</th>
+                        <th>Categories</th>
+                        <th>Delete</th>
+                        <th>Details</th>
+                    </tr>
+                    {post.map(post => {
+                        return (
+                            <tbody>
+                                <tr>
+                                    <td>{post.amount}</td>
+                                    <td>{moment.utc(post.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
+                                    <td>{post.referenceNumber}</td>
+                                    <td>{post.beneficiaryName}</td>
+                                    <td>{post.transactionType}</td>
+                                    <td>
+                                        <div>
+                                            {
+                                                !post.categoryName.length > 0 ?
+                                                    <div class="dropdown">
+                                                        <button class="dropbtn">Categories</button>
+                                                        <div class="dropdown-content">
+                                                            <select value={selectedName} onChange={handleChange}>
+                                                                {names.map(name => (
+                                                                    <option key={name.name} value={name.name}>{name.name}</option>
+                                                                ))}
+
+                                                            </select>
+                                                            <button onClick={() => handleSubmit(post._id)}>Submit</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                : <td className='tableContent'>{post.categoryName}</td>
-                                        }
-                                    </div>
-                                </td>
-                                <td>
-                                    <button onClick={() => handleRemove(post.referenceNumber)}><DeleteIcon /></button>
-                                </td>
-                                <td>
-                                    <div>
-                                        <Button variant="outlined" onClick={handleClickOpen}>
-                                            <ExpandMoreIcon />
-                                        </Button>
-                                        <Dialog
-                                            fullScreen={fullScreen}
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="responsive-dialog-title"
-                                        >
-                                            <DialogTitle id="responsive-dialog-title">
-                                                {"Transaction Details"}
-                                            </DialogTitle>
-                                            <DialogContent>
-                                                <DialogContentText>
-                                                    {post.narration}
-                                                </DialogContentText>
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <Button onClick={handleClose} autoFocus>
-                                                    OK
-                                                </Button>
-                                            </DialogActions>
-                                        </Dialog>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    )
-                })}
-                {/* <button
+                                                    : <td className='tableContent'>{post.categoryName}</td>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handleRemove(post.referenceNumber)}><DeleteIcon /></button>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <Button variant="outlined" onClick={handleClickOpen}>
+                                                <ExpandMoreIcon />
+                                            </Button>
+                                            <Dialog
+                                                fullScreen={fullScreen}
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="responsive-dialog-title"
+                                            >
+                                                <DialogTitle id="responsive-dialog-title">
+                                                    {"Transaction Details"}
+                                                </DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText>
+                                                        {post.narration}
+                                                    </DialogContentText>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} autoFocus>
+                                                        OK
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
+                    {/* <button
                     style={styles}
                 // onMouseEnter={() => setBgColour("#c83f49")}
                 // onMouseLeave={() => setBgColour("#fafafa")}
@@ -250,145 +239,43 @@ function Transactions() {
                     {" "}
                     Add
                 </button> */}
-            </Table>
-            <div className='fixedbutton'>
-                <Button variant="outlined" onClick={handleClickOpenDrawer}>
-                    <Fab color="primary" aria-label="add">
-                        <AddIcon />
-                    </Fab>
-                </Button>
-            </div>
-            <Dialog
-                fullScreen
-                open={drawer}
-                onClose={handleCloseDrawer}
-                TransitionComponent={Transition}
-            >
-                <AppBar sx={{ position: 'relative' }}>
-                    <Toolbar>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            onClick={handleCloseDrawer}
-                            aria-label="close"
-                        >
-                            <CloseIcon />
-                        </IconButton>
-                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Add New Transaction
-                        </Typography>
-                        <Button autoFocus color="inherit" onClick={handleSubmitTransaction}>
-                            save
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-                <div className='drawer'>
-                    <Box
-                        sx={{
-                            width: 500,
-                            maxWidth: '100%',
-                            '& .MuiTextField-root': { m: 1, width: '55ch' },
-                        }}
-                        autoComplete="off"
-                    >
-                        <TextField
-
-                            id="name"
-                            label="Name"
-                            type='string'
-                            value={inputValues.name}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                        <TextField
-                            required
-                            id="outlined-basic"
-                            label="Date & Time"
-                            variant="outlined"
-                            type='time'
-                            value={inputValues.dateAndTime}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr />
-                        <TextField
-                            required
-                            label="Narration"
-                            multiline
-                            rows={6}
-                            type='string'
-                            id="narration"
-                            value={inputValues.narration}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr />
-                        <TextField
-                            required
-                            label="Amount"
-                            id="outlined-basic"
-                            type='number'
-                            value={inputValues.amount}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr />
-                        <TextField
-                            required
-                            label="Transaction-Type"
-                            id="outlined-basic"
-                            
-                            value={inputValues.transactionType}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr />
-                        <TextField
-                            required
-                            label="Benificiary Name"
-                            type='string'
-                            id='Benificary Name'
-                            value={inputValues.beneficiaryName}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                        <TextField
-                            required
-                            label="Beneficiary Account Number"
-                            type='number'
-                            id='Beneficiary Account Number'
-                            value={inputValues.beneficiaryAccountNumber}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                        <TextField
-                            required
-                            label="Reference Number"
-                            type='number'
-                            id='Reference Number'
-                            value={inputValues.referenceNumber}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                        <TextField
-                            required
-                            label="Available Balance"
-                            type='number'
-                            id='Balance'
-                            value={inputValues.availableBalance}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                        <TextField
-                            required
-                            label="Sender's Name"
-                            type='string'
-                            id='Senders Name'
-                            value={inputValues.remitterName}
-                            onChange={handleChangeTransaction}
-                        />
-                        <hr/>
-                    </Box>
+                </Table>
+                <div className='fixedbutton'>
+                    <Button variant="outlined" onClick={handleClickOpenDrawer}>
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                    </Button>
                 </div>
-            </Dialog>
-        </div>
-    )
-}
+                <Dialog
+                    fullScreen
+                    open={drawer}
+                    onClose={handleCloseDrawer}
+                    TransitionComponent={Transition}
+                >
+                    <AppBar sx={{ position: 'relative' }}>
+                        <Toolbar>
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                onClick={handleCloseDrawer}
+                                aria-label="close"
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                                Add New Transaction
+                            </Typography>
+                            
+                        </Toolbar>
+                    </AppBar>
+                    <div className='drawer'>
+                        <Form/>
+                    </div>
+                </Dialog>
+            </div>
+        )
+    }
+
 
 export default Transactions;

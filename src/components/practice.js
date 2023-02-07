@@ -133,7 +133,7 @@ function MyComponent() {
 
 //Category
 
-const [selectedName, setSelectedName] = useState({selectedName:[]});
+const [selectedName, setSelectedName] = useState({ selectedName: [] });
 
 const handleChange = (event) => {
     setSelectedName(event.target.value);
@@ -158,3 +158,58 @@ const handleSubmit = async () => {
 //
 
 <ExpandMoreIcon />
+
+//
+
+const Form = () => {
+    const [formData, setFormData] = useState({ name: "", email: "" });
+
+    const handleChangeTransaction = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
+    const handleSubmitTransaction = (event) => {
+        event.preventDefault();
+
+        // send the form data to the API endpoint for storing in the database
+        fetch("http://localhost:5000/api/transactions/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
+
+    return 
+        <form onSubmit={handleSubmitTransaction}>
+            <label>
+                Name:
+                <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChangeTransaction}
+                />
+            </label>
+            <br />
+            <label>
+                Email:
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChangeTransaction}
+                />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+};
