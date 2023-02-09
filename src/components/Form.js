@@ -245,16 +245,16 @@ function MyForm() {
         e.preventDefault();
         axios
             .post('http://localhost:5000/api/transactions/add/manual', {
-                dateAndTime: 'inputValue1',
-                narration: 'inputValue2',
+                dateAndTime: inputValue1,
+                narration: inputValue2,
                 amount: inputValue3,
-                transactionType: 'inputValue4',
-                referenceNumber: 'inputValue5',
+                transactionType: inputValue4,
+                referenceNumber: inputValue5,
                 availableBalance: inputValue6,
-                beneficiaryAccountNumber: 'inputValue7',
-                beneficiaryName: 'inputValue8',
-                remitterAccountNumber: 'inputValue9',
-                remitterName: 'inputvalue10'
+                beneficiaryAccountNumber: inputValue7,
+                beneficiaryName: inputValue8,
+                remitterAccountNumber: inputValue9,
+                remitterName: inputValue10
             })
             .then((response) => {
                 console.log(response.data);
@@ -267,7 +267,7 @@ function MyForm() {
                 Date And Time :
                 <TextField
                     type='datetime-local'
-                    label="Date and Time"
+                    // label="Date and Time"
                     name="dateAndTime"
                     value={inputValue1}
                     onChange={handleChange1}
