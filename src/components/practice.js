@@ -188,28 +188,52 @@ const Form = () => {
             });
     };
 
-    return 
-        <form onSubmit={handleSubmitTransaction}>
-            <label>
-                Name:
-                <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChangeTransaction}
-                />
-            </label>
-            <br />
-            <label>
-                Email:
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChangeTransaction}
-                />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-        </form>
+    return
+    <form onSubmit={handleSubmitTransaction}>
+        <label>
+            Name:
+            <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChangeTransaction}
+            />
+        </label>
+        <br />
+        <label>
+            Email:
+            <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChangeTransaction}
+            />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+    </form>
 };
+
+//Routing Transaction page
+
+const history = useHistory();
+
+const Transactions = () => {
+    history.push("/Transactions")
+}
+
+
+<button className="btn btn-success"
+    onClick={Transactions}>Transactions
+</button>
+
+
+<tr>
+
+    <td>{item.amount}</td>
+    <td>{moment.utc(item.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
+    <td>{item.referenceNumber}</td>
+    <td>{item.beneficiaryName}</td>
+    <td>{item.remitterName}</td>
+    <td>{item.availableBalance}</td>
+</tr>

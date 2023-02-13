@@ -23,7 +23,8 @@
     "react-bootstrap": "^2.7.0",
     "react-datetime-picker": "^4.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
+    "react-router": "^6.8.1",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"

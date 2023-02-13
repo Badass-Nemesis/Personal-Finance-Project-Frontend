@@ -46,6 +46,8 @@ function Transactions() {
                 console.log(err)
             })
     }, [])
+
+
     //on click button funcnalityeeeeeeee
 
     const handleChange = (event) => {
@@ -99,7 +101,7 @@ function Transactions() {
     //     background: "#c83f49",
     // };
 
-    //CATEGORY NAME FETCH RR RHA HAI!
+    //CATEGORY NAME FETCH KRR RHA HAI!
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/category')
@@ -152,86 +154,83 @@ function Transactions() {
     // });
 
 
+    return (
+        <div>
+            <Table striped bordered hover variant="dark" responsive="sm">
+                <tr>
+                    <th>Amount</th>
+                    <th>Date And Time</th>
+                    <th>Reference Number</th>
+                    <th>To</th>
+                    <th>Transaction Type</th>
+                    <th>Categories</th>
+                    <th>Delete</th>
+                    <th>Details</th>
+                </tr>
+                {post.map(post => {
+                    return (
+                        <tbody>
+                            <tr>
+                                <td>{post.amount}</td>
+                                <td>{moment.utc(post.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
+                                <td>{post.referenceNumber}</td>
+                                <td>{post.beneficiaryName}</td>
+                                <td>{post.transactionType}</td>
+                                <td>
+                                    <div>
+                                        {
+                                            !post.categoryName.length > 0 ?
+                                                <div class="dropdown">
+                                                    <button class="dropbtn">Categories</button>
+                                                    <div class="dropdown-content">
+                                                        <select value={selectedName} onChange={handleChange}>
+                                                            {names.map(name => (
+                                                                <option key={name.name} value={name.name}>{name.name}</option>
+                                                            ))}
 
-
-
-        return (
-            <div>
-                <Table striped bordered hover variant="dark" responsive="sm">
-                    <tr>
-                        <th>Amount</th>
-                        <th>Date And Time</th>
-                        <th>Reference Number</th>
-                        <th>To</th>
-                        <th>Transaction Type</th>
-                        <th>Categories</th>
-                        <th>Delete</th>
-                        <th>Details</th>
-                    </tr>
-                    {post.map(post => {
-                        return (
-                            <tbody>
-                                <tr>
-                                    <td>{post.amount}</td>
-                                    <td>{moment.utc(post.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
-                                    <td>{post.referenceNumber}</td>
-                                    <td>{post.beneficiaryName}</td>
-                                    <td>{post.transactionType}</td>
-                                    <td>
-                                        <div>
-                                            {
-                                                !post.categoryName.length > 0 ?
-                                                    <div class="dropdown">
-                                                        <button class="dropbtn">Categories</button>
-                                                        <div class="dropdown-content">
-                                                            <select value={selectedName} onChange={handleChange}>
-                                                                {names.map(name => (
-                                                                    <option key={name.name} value={name.name}>{name.name}</option>
-                                                                ))}
-
-                                                            </select>
-                                                            <button onClick={() => handleSubmit(post._id)}>Submit</button>
-                                                        </div>
+                                                        </select>
+                                                        <button onClick={() => handleSubmit(post._id)}>Submit</button>
                                                     </div>
-                                                    : <td className='tableContent'>{post.categoryName}</td>
-                                            }
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button onClick={() => handleRemove(post.referenceNumber)}><DeleteIcon /></button>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <Button variant="outlined" onClick={handleClickOpen}>
-                                                <ExpandMoreIcon />
-                                            </Button>
-                                            <Dialog
-                                                fullScreen={fullScreen}
-                                                open={open}
-                                                onClose={handleClose}
-                                                aria-labelledby="responsive-dialog-title"
-                                            >
-                                                <DialogTitle id="responsive-dialog-title">
-                                                    {"Transaction Details"}
-                                                </DialogTitle>
-                                                <DialogContent>
-                                                    <DialogContentText>
-                                                        {post.narration}
-                                                    </DialogContentText>
-                                                </DialogContent>
-                                                <DialogActions>
-                                                    <Button onClick={handleClose} autoFocus>
-                                                        OK
-                                                    </Button>
-                                                </DialogActions>
-                                            </Dialog>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        )
-                    })}
-                    {/* <button
+                                                </div>
+                                                : <td className='tableContent'>{post.categoryName}</td>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onClick={() => handleRemove(post.referenceNumber)}><DeleteIcon /></button>
+                                </td>
+                                <td>
+                                    <div>
+                                        <Button variant="outlined" onClick={handleClickOpen}>
+                                            <ExpandMoreIcon />
+                                        </Button>
+                                        <Dialog
+                                            fullScreen={fullScreen}
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="responsive-dialog-title"
+                                        >
+                                            <DialogTitle id="responsive-dialog-title">
+                                                {"Transaction Details"}
+                                            </DialogTitle>
+                                            <DialogContent>
+                                                <DialogContentText>
+                                                    {post.narration}
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClose} autoFocus>
+                                                    OK
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    )
+                })}
+                {/* <button
                     style={styles}
                 // onMouseEnter={() => setBgColour("#c83f49")}
                 // onMouseLeave={() => setBgColour("#fafafa")}
@@ -239,43 +238,43 @@ function Transactions() {
                     {" "}
                     Add
                 </button> */}
-                </Table>
-                <div className='fixedbutton'>
-                    <Button variant="outlined" onClick={handleClickOpenDrawer}>
-                        <Fab color="primary" aria-label="add">
-                            <AddIcon />
-                        </Fab>
-                    </Button>
-                </div>
-                <Dialog
-                    fullScreen
-                    open={drawer}
-                    onClose={handleCloseDrawer}
-                    TransitionComponent={Transition}
-                >
-                    <AppBar sx={{ position: 'relative' }}>
-                        <Toolbar>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                onClick={handleCloseDrawer}
-                                aria-label="close"
-                            >
-                                <CloseIcon />
-                            </IconButton>
-                            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                                Add New Transaction
-                            </Typography>
-                            
-                        </Toolbar>
-                    </AppBar>
-                    <div className='drawer'>
-                        <Form/>
-                    </div>
-                </Dialog>
+            </Table>
+            <div className='fixedbutton'>
+                <Button variant="outlined" onClick={handleClickOpenDrawer}>
+                    <Fab color="primary" aria-label="add">
+                        <AddIcon />
+                    </Fab>
+                </Button>
             </div>
-        )
-    }
+            <Dialog
+                fullScreen
+                open={drawer}
+                onClose={handleCloseDrawer}
+                TransitionComponent={Transition}
+            >
+                <AppBar sx={{ position: 'relative' }}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={handleCloseDrawer}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                            Add New Transaction
+                        </Typography>
+
+                    </Toolbar>
+                </AppBar>
+                <div className='drawer'>
+                    <Form />
+                </div>
+            </Dialog>
+        </div>
+    )
+}
 
 
 export default Transactions;
