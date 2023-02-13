@@ -10,11 +10,36 @@ import Table from 'react-bootstrap/Table'
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../App.css';
+import Categoryform from './Categoryform';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 
 export default function SimpleAccordion() {
 
+    const [drawer, setDrawer] = React.useState(false);
     const [data, setData] = useState([]);
+
+    const handleClickOpenDrawer = () => {
+        setDrawer(true);
+    };
+
+    const handleCloseDrawer = () => {
+        setDrawer(false);
+    };
 
     useEffect(() => {
         axios
@@ -66,15 +91,15 @@ export default function SimpleAccordion() {
                             <td >
                                 <Typography>{item.name}</Typography>
                             </td>
-                            <td style={{paddingLeft:'1400px'}}>
+                            <td style={{ paddingLeft: '1400px' }}>
                                 <Typography>
-                                <button onClick={() => handleRemoveCategory(item.name)}><DeleteIcon /></button>
-                                    </Typography>
+                                    <button onClick={() => handleRemoveCategory(item.name)}><DeleteIcon /></button>
+                                </Typography>
                             </td>
 
                         </tr>
-                        
-                        
+
+
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -137,13 +162,13 @@ export default function SimpleAccordion() {
                             <CloseIcon />
                         </IconButton>
                         <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Add New Transaction
+                            Add New Category
                         </Typography>
 
                     </Toolbar>
                 </AppBar>
                 <div className='drawer'>
-
+                    <Categoryform />
                 </div>
             </Dialog>
         </div >
