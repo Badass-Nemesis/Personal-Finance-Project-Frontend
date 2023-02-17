@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Transactions from './components/Transactions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
@@ -13,17 +13,17 @@ import Register from './components/register'
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename='/Personal-Finance-Project-Frontend'>
-        <Navbar />
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/Transactions' element={<Transactions />} />
-          <Route path='/Logout' element={<Logout />} />
-          <Route path='/Category' element={<Category />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Register' element={<Register />} />
-        </Routes>
-      </BrowserRouter>
+      {/* <BrowserRouter basename='/Personal-Finance-Project-Frontend'> */}
+      <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/Transactions' element={<Transactions />} />
+        <Route path='/Logout' element={<Logout />} />
+        <Route path='/Category' element={<Category />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/Register' element={<Register />} />
+      </Routes>
+      {/* </BrowserRouter> */}
     </div>
   );
 }
