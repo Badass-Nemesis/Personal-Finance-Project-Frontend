@@ -51,6 +51,14 @@ function App() {
             .catch(error => {
                 console.log(error);
             });
+
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/category`, { 'headers': { 'x-auth-token': auth.getToken() } })
+            .then(response => {
+                setNames(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }, []);
 
     return (

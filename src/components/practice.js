@@ -1,4 +1,4 @@
-<div class="navbar">
+{/* <div class="navbar">
     <a>Home</a>
     <a>News</a>
     <div class="dropdown">
@@ -220,4 +220,4 @@ const history = useHistory();
 
 const Transactions = () => {
     history.push("/Transactions")
-}
+} */}

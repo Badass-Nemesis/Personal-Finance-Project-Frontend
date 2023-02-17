@@ -75,18 +75,18 @@ function SimpleAccordion() {
         setEndpoint(event.target.value);
     };
 
-    const [open, setOpen] = React.useState(false);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    // const [open, setOpen] = React.useState(false);
+    // const theme = useTheme();
+    // const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // };
 
     //Add transaction Page
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
     const [drawer, setDrawer] = React.useState(false);
 
