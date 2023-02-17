@@ -13,8 +13,8 @@ import Register from './components/register'
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename='/Personal-Finance-Project-Frontend'>
+        <Navbar />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/Transactions' element={<Transactions />} />
