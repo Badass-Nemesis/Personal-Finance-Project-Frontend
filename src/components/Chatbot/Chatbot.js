@@ -73,7 +73,7 @@ const Chatbot = () => {
 
         <div className="chatbot-container">
             <Button onClick={handleClickOpen('paper')}>
-                <img className='chatbotimg' src="https://cdn-icons-png.flaticon.com/512/1698/1698586.png" />
+                <img className='chatbotimg' src="https://cdn-icons-png.flaticon.com/512/1698/1698586.png" alt='Chatbot.png'/>
             </Button>
             <Dialog
                 open={open}

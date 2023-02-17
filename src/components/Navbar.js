@@ -19,7 +19,7 @@ import axios from 'axios';
 // import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const ButtonPage = () => {
 	const [showPopup, setShowPopup] = useState(false);
