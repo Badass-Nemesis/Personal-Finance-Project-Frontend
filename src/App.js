@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <BrowserRouter basename='/Personal-Finance-Project-Frontend'>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/Transactions' element={<Transactions />} />
