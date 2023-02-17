@@ -2,7 +2,7 @@
   "homepage": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend",
   "name": "myapp",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@blueprintjs/core": "^4.15.1",
     "@blueprintjs/icons": "^4.13.1",
