@@ -9,7 +9,7 @@ const withAuth = (Component) => {
             if (isLoggedIn) {
                 return <Component {...this.props} />;
             } else {
-                return <Navigate to='/Login' />;
+                return <Navigate to='/Personal-Finance-Project-Frontend/Login' />;
             }
         }
     };

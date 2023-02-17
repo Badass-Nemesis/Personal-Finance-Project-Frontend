@@ -20,7 +20,7 @@ const Login = () => {
         axios.post(`${process.env.REACT_APP_BASE_URL}api/auth`, { email: email, password: password })
             .then((response) => {
                 auth.setToken(response.data);
-                window.location = '/';
+                window.location = '/Personal-Finance-Project-Frontend/';
             })
             .catch((error) => {
                 setErrorMessage(error.response.data.message);

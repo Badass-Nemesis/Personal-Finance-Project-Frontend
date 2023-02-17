@@ -6,7 +6,7 @@ function Logout() {
     auth.clearToken();
 
     // Redirect the user to the login page
-    return <Navigate to="/Login" />;
+    return <Navigate to="/Personal-Finance-Project-Frontend/Login" />;
 }
 
 export default Logout;

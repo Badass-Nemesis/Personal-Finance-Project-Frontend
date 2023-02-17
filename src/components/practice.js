@@ -221,19 +221,3 @@ const history = useHistory();
 const Transactions = () => {
     history.push("/Transactions")
 }
-
-
-<button className="btn btn-success"
-    onClick={Transactions}>Transactions
-</button>
-
-
-<tr>
-
-    <td>{item.amount}</td>
-    <td>{moment.utc(item.dateAndTime).local().format('YYYY-MM-DD HH:mm:ss')}</td>
-    <td>{item.referenceNumber}</td>
-    <td>{item.beneficiaryName}</td>
-    <td>{item.remitterName}</td>
-    <td>{item.availableBalance}</td>
-</tr>
