@@ -195,7 +195,7 @@ function SimpleAccordion() {
                             <CloseIcon />
                         </IconButton>
                         <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Add New Transaction
+                            Add New Category
                         </Typography>
 
                     </Toolbar>

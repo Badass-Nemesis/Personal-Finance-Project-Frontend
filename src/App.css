@@ -181,3 +181,13 @@ input[type="text"] {
 .heading{
   margin-right: 600px;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+}

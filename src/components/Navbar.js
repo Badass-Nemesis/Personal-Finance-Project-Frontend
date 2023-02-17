@@ -14,57 +14,54 @@ import auth from '../Auth';
 //import { Route, useNavigate, Routes } from "react-router-dom"]
 import axios from 'axios';
 // import Popup from './Popup';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+// import Dialog from '@mui/material/Dialog';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useEffect } from 'react';
 
-
-
-
-const handleClicLink = async () => {
-	try {
-		await fetch(`${process.env.REACT_APP_BASE_URL}api/transactions/updown/gmail`, {
-			method: "GET",
-			headers: { 'x-auth-token': auth.getToken() }
-		}).then(() => {
-			window.location.reload();
-		})
-		// await response;
-		//console.log(data);
-	} catch (error) {
-		// console.error(error);
-	}
-};
-
 const ButtonPage = () => {
-	// let navigate = useNavigate();
-	const [open, setOpen] = React.useState(false);
+	const [showPopup, setShowPopup] = useState(false);
 	const [data, setData] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		axios.get(`${process.env.REACT_APP_BASE_URL}api/chatadvice/ask`, {
-			headers: { 'x-auth-token': auth.getToken() }
-		}).then(response => {
-			// console.log(response.data);
-			setData(response.data);
-		});
-	});
-
-	const handleClickOpen = () => {
-		setOpen(true);
+	const handleClickLink = async () => {
+		setIsLoading(true);
+		try {
+			await fetch(`${process.env.REACT_APP_BASE_URL}api/transactions/updown/gmail`, {
+				method: "GET",
+				headers: { 'x-auth-token': auth.getToken() }
+			}).then(() => {
+				window.location.reload();
+			})
+			// await response;
+			//console.log(data);
+		} catch (error) {
+			// console.error(error);
+		}
 	};
 
-	const handleClose = () => {
-		setOpen(false);
+
+	const handleClick = () => {
+		async function datasetting() {
+			await axios.get(`${process.env.REACT_APP_BASE_URL}api/chatadvice/ask`, {
+				headers: { 'x-auth-token': auth.getToken() }
+			}).then(response => {
+				// console.log(response.data);
+				setData(response.data);
+			});
+		}
+		datasetting();
+		setShowPopup(true);
 	};
 
-
-
+	const handleCloseLink = () => {
+		setShowPopup(false);
+	}
 
 	return (
+
 		<>
 			{[false].map((expand) => (
 				<Navbar key={expand} bg="light" expand={expand} className="mb-3">
@@ -78,7 +75,7 @@ const ButtonPage = () => {
 						>
 							<Offcanvas.Header closeButton>
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-									Profile
+									WELCOME
 								</Offcanvas.Title>
 							</Offcanvas.Header>
 							<Offcanvas.Body>
@@ -101,36 +98,28 @@ const ButtonPage = () => {
 									<Button variant="outline-success">Search</Button>
 								</Form> */}
 								<br />
-								<Button variant="outline-success" onClick={() => {
-									handleClicLink()
-								}}>Gmail</Button>
-								<br />
-								<br />
-								{/* <Button variant="outline-success" ></Button> */}
-								<Button variant="outlined" onClick={handleClickOpen}>
-									Advice
+								<Button variant="outline-success" onClick={handleClickLink}>
+									{isLoading ? 'Loading...' : 'Gmail'}
 								</Button>
-								<Dialog
-									open={open}
-									onClose={handleClose}
-									aria-labelledby="alert-dialog-title"
-									aria-describedby="alert-dialog-description"
-								>
-									<DialogTitle id="alert-dialog-title">
-										{"Advice"}
-										{data}
-									</DialogTitle>
-									<DialogContent>
-										<DialogContentText id="alert-dialog-description">
-											{data}
-										</DialogContentText>
-									</DialogContent>
-									<DialogActions>
-										<Button onClick={handleClose} autoFocus>
-											ThankYou
-										</Button>
-									</DialogActions>
-								</Dialog>
+								<br />
+								<br />
+								{/* <Button variant="outline-success" onClick={<Popup />} ></Button> */}
+								<Button variant="outline-success" onClick={handleClick}>Advice</Button>
+								{showPopup && (
+									<div className="popup">
+										<h2>Advice</h2>
+										{data === "" ? (
+											<p>Loading....</p>
+										) : (
+											<>
+												<p>{data}</p>
+												<br /> <br />
+												<Button variant="outline-success" onClick={handleCloseLink}>Close Popup</Button>
+											</>
+										)}
+									</div>
+
+								)}
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
 					</Container>

@@ -8,6 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import withAuth from '../../WithAuth';
 
 const Chatbot = () => {
     const [inputText, setInputText] = useState('');
@@ -118,4 +119,4 @@ const Chatbot = () => {
     );
 };
 
-export default Chatbot;
+export default withAuth(Chatbot);

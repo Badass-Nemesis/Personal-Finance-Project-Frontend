@@ -12,6 +12,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import withAuth from '../WithAuth';
 
 
 function App() {
@@ -146,4 +147,4 @@ function App() {
     );
 }
 
-export default App;
+export default withAuth(App);

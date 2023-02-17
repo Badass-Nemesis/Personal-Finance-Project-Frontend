@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import Category from './components/Category'
 import Home from './components/Home';
-// import dotenv from 'dotenv';
-// dotenv.config();
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/register'
@@ -27,7 +25,6 @@ function App() {
           <Route path='/register' element={<Register />} />
         </Routes>
       </BrowserRouter>
-
     </div>
   );
 }

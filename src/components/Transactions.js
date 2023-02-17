@@ -115,7 +115,7 @@ function Transactions() {
     //Narration box handle click
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
-    
+
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
 
