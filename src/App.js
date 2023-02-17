@@ -11,11 +11,9 @@ import Home from './components/Home';
 // import dotenv from 'dotenv';
 // dotenv.config();
 import Login from './components/Login'
+import Logout from './components/Logout';
 
 function App() {
-
-  
-
   return (
 
     <div className="App">
@@ -24,13 +22,14 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/Transactions' element={<Transactions />} />
+          <Route path='/Logout' element={<Logout />} />
           <Route path='/Categoryfifteen' element={<Categoryfifteen />} />
           <Route path='/Categorythirty' element={<Categorythirty />} />
           <Route path='/Categorysixty' element={<Categorysixty />} />
           <Route path='/Login' element={<Login />} />
         </Routes>
       </BrowserRouter>
-      
+
     </div>
   );
 }

@@ -23,6 +23,8 @@ import Slide from '@mui/material/Slide';
 // import TextField from '@mui/material/TextField';
 // import Box from '@mui/material/Box';
 import Form from './Form';
+import withAuth from '../WithAuth';
+import auth from '../Auth';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -37,13 +39,13 @@ function Transactions() {
 
     //fetching data from api
     useEffect(() => {
-        axios.get('http://localhost:5000/api/transactions')
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/transactions`, { 'headers': { 'x-auth-token': auth.getToken() } })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setPost(res.data)
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }, [])
 
@@ -57,10 +59,11 @@ function Transactions() {
 
     const handleSubmit = async (objectId) => {
         try {
-            const response = await fetch("http://localhost:5000/api/category/pushTransactions", {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/category/pushTransactions`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'x-auth-token': auth.getToken()
                 },
                 body: JSON.stringify({ name: selectedName, transactions: objectId }),
             });
@@ -68,16 +71,17 @@ function Transactions() {
             //console.log(data);
             window.location.reload();
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
     const handleRemove = async (ref) => {
         try {
-            const response = await fetch("http://localhost:5000/api/transactions/", {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/transactions`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
+                    'x-auth-token': auth.getToken()
                 },
                 body: JSON.stringify({ referenceNumber: ref }),
             });
@@ -104,7 +108,7 @@ function Transactions() {
     //CATEGORY NAME FETCH KRR RHA HAI!
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/category')
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/category`, { 'headers': { 'x-auth-token': auth.getToken() } })
             .then(response => {
                 setNames(response.data);
             })
@@ -184,6 +188,7 @@ function Transactions() {
                                                     <button class="dropbtn">Categories</button>
                                                     <div class="dropdown-content">
                                                         <select value={selectedName} onChange={handleChange}>
+                                                            <option>Select Category</option>
                                                             {names.map(name => (
                                                                 <option key={name.name} value={name.name}>{name.name}</option>
                                                             ))}
@@ -277,4 +282,4 @@ function Transactions() {
 }
 
 
-export default Transactions;
+export default withAuth(Transactions);

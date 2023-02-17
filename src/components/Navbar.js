@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Logout from './Logout';
 // import { useNavigate } from 'react-router-dom';
 // import { Route } from 'react-router-dom';
 //import Addnewtransaction from './Addnewtransaction';
@@ -19,7 +20,7 @@ const handleClicLink = async (objectId) => {
 	try {
 		const response = await fetch("http://localhost:5000/api/transactions/updown/gmail", {
 			method: "GET",
-			
+
 		});
 		await response.json();
 		//console.log(data);
@@ -42,7 +43,6 @@ const ButtonPage = () => {
 				<Navbar key={expand} bg="light" expand={expand} className="mb-3">
 					<Container fluid>
 						<Navbar.Brand href="#">Personal Finance</Navbar.Brand>
-						<Navbar.Brand href="/Login">Login</Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 							id={`offcanvasNavbar-expand-${expand}`}
@@ -57,6 +57,8 @@ const ButtonPage = () => {
 							<Offcanvas.Body>
 								<Nav className="justify-content-end flex-grow-1 pe-3">
 									<Nav.Link href="/Home">Home</Nav.Link>
+									<Nav.Link href="/Login">Login</Nav.Link>
+									<Nav.Link href="/Logout">Logout</Nav.Link>
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
 									<Nav.Link href="/Transactions">Transactions</Nav.Link>
 									<NavDropdown
@@ -87,9 +89,9 @@ const ButtonPage = () => {
 									/>
 									<Button variant="outline-success">Search</Button>
 								</Form> */}
-					<Button variant="outline-success" onClick={()=>{
-						handleClicLink()
-					}}>Gmail</Button>
+								<Button variant="outline-success" onClick={() => {
+									handleClicLink()
+								}}>Gmail</Button>
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
 					</Container>

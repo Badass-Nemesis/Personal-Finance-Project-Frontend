@@ -2,7 +2,7 @@ import React from 'react'
 import Graph1 from './Graphs/Graph1'
 import Graph2 from './Graphs/Graph2'
 import Graph3 from './Graphs/Graph3'
-
+import withAuth from '../WithAuth'
 import '../App.css';
 
 
@@ -21,4 +21,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default withAuth(Home);

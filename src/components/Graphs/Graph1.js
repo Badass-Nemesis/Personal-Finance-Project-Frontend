@@ -10,8 +10,8 @@ const Graph1 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BASE_URL}api/category/${endpoint}`,{
-            headers: {"x-auth-token": process.env.REACT_APP_TOKEN}
+        fetch(`${process.env.REACT_APP_BASE_URL}api/category/${endpoint}`, {
+            headers: { "x-auth-token": process.env.REACT_APP_TOKEN }
         })
             .then(response => response.json())
             .then(data => {
@@ -29,7 +29,7 @@ const Graph1 = () => {
             });
     }, [endpoint]);
 
-    function handleCategoryChange (event) {
+    function handleCategoryChange(event) {
         setEndpoint(event.target.value);
     };
 
@@ -59,6 +59,7 @@ const Graph1 = () => {
             <div>
                 Dropdown For You Wish :
                 <select value={endpoint} onChange={handleCategoryChange}>
+                    <option>Select</option>
                     <option value="">All</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
