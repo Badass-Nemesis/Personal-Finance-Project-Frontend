@@ -7,8 +7,14 @@ import Navbar from './components/Navbar';
 import Categoryfifteen from './components/Categoryfifteen'
 import Categorythirty from './components/Categorythirty'
 import Categorysixty from './components/Categorysixty'
+import Home from './components/Home';
+// import dotenv from 'dotenv';
+// dotenv.config();
+import Login from './components/Login'
 
 function App() {
+
+  
 
   return (
 
@@ -16,12 +22,15 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
+          <Route exact path='/' element={<Home />} />
           <Route path='/Transactions' element={<Transactions />} />
           <Route path='/Categoryfifteen' element={<Categoryfifteen />} />
           <Route path='/Categorythirty' element={<Categorythirty />} />
           <Route path='/Categorysixty' element={<Categorysixty />} />
+          <Route path='/Login' element={<Login />} />
         </Routes>
       </BrowserRouter>
+      
     </div>
   );
 }

@@ -108,3 +108,19 @@ th{
 .categorydelete{
   width:100%
 }
+
+.graph1{
+  float: left;
+  width: 33.33%;
+}
+
+.graph2{
+  float:left;
+  width: 33.33%;
+}
+
+.graph3{
+  float:left;
+  width: 33.33%;
+  padding-right: 9px;
+}
