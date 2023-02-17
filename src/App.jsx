@@ -17,12 +17,12 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/Transactions' element={<Transactions />} />
-          <Route exact path='/Logout' element={<Logout />} />
-          <Route exact path='/Category' element={<Category />} />
-          <Route exact path='/Login' element={<Login />} />
-          <Route exact path='/register' element={<Register />} />
+          <Route exact path='/Home' element={<Home />} />
+          <Route path='/Transactions' element={<Transactions />} />
+          <Route path='/Logout' element={<Logout />} />
+          <Route path='/Category' element={<Category />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
