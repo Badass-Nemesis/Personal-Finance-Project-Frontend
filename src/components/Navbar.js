@@ -66,7 +66,7 @@ const ButtonPage = () => {
 			{[false].map((expand) => (
 				<Navbar key={expand} bg="light" expand={expand} className="mb-3">
 					<Container fluid>
-						<Navbar.Brand href="#">Personal Finance</Navbar.Brand>
+						<Navbar.Brand href="/Personal-Finance-Project-Frontend">Personal Finance</Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 							id={`offcanvasNavbar-expand-${expand}`}
@@ -80,13 +80,13 @@ const ButtonPage = () => {
 							</Offcanvas.Header>
 							<Offcanvas.Body>
 								<Nav className="justify-content-end flex-grow-1 pe-3">
-									<Nav.Link href="/">Home</Nav.Link>
-									<Nav.Link href="/Login">Login</Nav.Link>
-									<Nav.Link href="/Logout">Logout</Nav.Link>
-									<Nav.Link href="/register">Register</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/">Home</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/Login">Login</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/Logout">Logout</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/Register">Register</Nav.Link>
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
-									<Nav.Link href="/Transactions">Transactions</Nav.Link>
-									<Nav.Link href="/Category">Categories</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/Transactions">Transactions</Nav.Link>
+									<Nav.Link href="/Personal-Finance-Project-Frontend/Category">Categories</Nav.Link>
 								</Nav>
 								{/* <Form className="d-flex">
 									<Form.Control
