@@ -14,14 +14,14 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <BrowserRouter>
+      <BrowserRouter basename='/Personal-Finance-Project-Frontend'>
         <Routes>
-          <Route exact path='/Personal-Finance-Project-Frontend/' element={<Home />} />
-          <Route exact path='/Personal-Finance-Project-Frontend/Transactions' element={<Transactions />} />
-          <Route exact path='/Personal-Finance-Project-Frontend/Logout' element={<Logout />} />
-          <Route exact path='/Personal-Finance-Project-Frontend/Category' element={<Category />} />
-          <Route exact path='/Personal-Finance-Project-Frontend/Login' element={<Login />} />
-          <Route exact path='/Personal-Finance-Project-Frontend/Register' element={<Register />} />
+          <Route exact path='/' element={<Home />} />
+          <Route path='/Transactions' element={<Transactions />} />
+          <Route path='/Logout' element={<Logout />} />
+          <Route path='/Category' element={<Category />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Register' element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
