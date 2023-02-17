@@ -26,11 +26,9 @@ import Form from './Form';
 import withAuth from '../WithAuth';
 import auth from '../Auth';
 
-
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 function Transactions() {
     const [post, setPost] = useState([])
@@ -51,11 +49,9 @@ function Transactions() {
 
 
     //on click button funcnalityeeeeeeee
-
     const handleChange = (event) => {
         setSelectedName(event.target.value);
     };
-
 
     const handleSubmit = async (objectId) => {
         try {
@@ -90,7 +86,7 @@ function Transactions() {
             //Auto Reload
             window.location.reload();
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -106,7 +102,6 @@ function Transactions() {
     // };
 
     //CATEGORY NAME FETCH KRR RHA HAI!
-
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL}api/category`, { 'headers': { 'x-auth-token': auth.getToken() } })
             .then(response => {
@@ -118,10 +113,12 @@ function Transactions() {
     }, []);
 
     //Narration box handle click
-
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
+    
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+
     const handleClickOpen = () => {
         setOpen(true);
     };

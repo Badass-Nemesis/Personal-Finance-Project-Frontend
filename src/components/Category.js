@@ -2,36 +2,93 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Table from 'react-bootstrap/Table'
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../App.css';
-import Categoryform from './Categoryform';
+import axios from 'axios'
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+// import TextField from '@mui/material/TextField';
+// import Box from '@mui/material/Box';
 import Slide from '@mui/material/Slide';
+import Categoryform from './Categoryform';
+import auth from '../Auth';
+import withAuth from '../WithAuth';
 
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+function SimpleAccordion() {
+
+    const [endpoint, setEndpoint] = useState('');
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}api/category/${endpoint}`, {
+            headers: { "x-auth-token": auth.getToken() }
+        })
+            .then(response => setData(response.data))
+            .catch(error => console.error(error));
+    }, [endpoint]);
+
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
+
+    const handleRemove = async (nam, ref) => {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}api/category/deleteTransaction`,
+            {
+                headers: { "x-auth-token": auth.getToken() },
+                data: {
+                    name: nam,
+                    transactions: ref
+                }
+            });
+        // console.log(res)
+        window.location.reload();
+    };
 
 
+    const handleRemoveCategory = async (nam) => {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}api/category/deleteCategory`,
+            {
+                headers: { "x-auth-token": auth.getToken() },
+                data: {
+                    name: nam
+                }
+            });
+        // console.log(res)
+        window.location.reload();
+    };
 
-export default function SimpleAccordion() {
+    function handleCategoryChange(event) {
+        setEndpoint(event.target.value);
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    //Add transaction Page
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const [drawer, setDrawer] = React.useState(false);
-    const [data, setData] = useState([]);
 
     const handleClickOpenDrawer = () => {
         setDrawer(true);
@@ -41,45 +98,21 @@ export default function SimpleAccordion() {
         setDrawer(false);
     };
 
-    useEffect(() => {
-        axios
-            .get('http://localhost:5000/api/Category/30')
-            .then(response => setData(response.data))
-            .catch(error => console.error(error));
-    }, []);
-
-
-    const handleRemove = async (nam, ref) => {
-
-        // console.log(nam)
-        const data = {
-            name: nam,
-            transactions: ref
-        };
-        // console.log(data);
-        await axios.delete('http://localhost:5000/api/category/deleteTransaction', { data });
-        // console.log(res)
-        window.location.reload()
-    };
-
-
-    const handleRemoveCategory = async (nam) => {
-
-        // console.log(nam)
-        const data = {
-            name: nam
-        };
-        // console.log(data);
-        await axios.delete('http://localhost:5000/api/category/deleteCategory', { data });
-        // console.log(res)
-        window.location.reload()
-    };
-
-
 
     return (
         <div>
-
+            <div>
+                Select days :
+                <select value={endpoint} onChange={handleCategoryChange}>
+                    <option>Select</option>
+                    <option value="">All</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                    <option value="180">180</option>
+                    <option value="360">360</option>
+                </select>
+            </div>
             {data.map(item => (
                 <Accordion>
                     <AccordionSummary
@@ -162,15 +195,19 @@ export default function SimpleAccordion() {
                             <CloseIcon />
                         </IconButton>
                         <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Add New Category
+                            Add New Transaction
                         </Typography>
 
                     </Toolbar>
                 </AppBar>
                 <div className='drawer'>
                     <Categoryform />
+                    {/* <Form /> */}
                 </div>
             </Dialog>
         </div >
+
     );
 }
+
+export default withAuth(SimpleAccordion);

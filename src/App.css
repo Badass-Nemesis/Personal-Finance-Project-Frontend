@@ -116,11 +116,68 @@ th{
 
 .graph2{
   float:left;
-  width: 33.33%;
+  width: 33.34%;
+  margin-top: 23.69px;
 }
 
 .graph3{
   float:left;
   width: 33.33%;
-  padding-right: 9px;
+  padding-right: .5px;
+  margin-top: 23.69px;
+}
+
+.chatbot{
+  margin :10px;
+  padding : 20px;
+}
+
+.messaging-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-history {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 80%;
+  padding: 8px;
+}
+
+.message {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  max-width: 80%;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  margin-right: 8px;
+}
+
+
+.chatbotimg{
+  width: 90px;
+  height: 90px;
+  float:right;
+  margin-right: 0%;
+} 
+
+.chatbot-input-container{
+  display: flexbox;
+}
+
+.heading{
+  margin-right: 600px;
 }

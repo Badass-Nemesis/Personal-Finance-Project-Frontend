@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 // import Dropdown from './Dropdown'
 /*aslint-disable react-hook/exhaustive-deps*/
-
+import auth from '../../Auth'
+import withAuth from '../../WithAuth';
 
 const Graph1 = () => {
-    const [endpoint, setEndpoint] = useState(null);
+    const [endpoint, setEndpoint] = useState('');
     const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}api/category/${endpoint}`, {
-            headers: { "x-auth-token": process.env.REACT_APP_TOKEN }
+            headers: { "x-auth-token": auth.getToken() }
         })
             .then(response => response.json())
             .then(data => {
@@ -57,9 +58,8 @@ const Graph1 = () => {
     return (
         <div>
             <div>
-                Dropdown For You Wish :
+                Select days :
                 <select value={endpoint} onChange={handleCategoryChange}>
-                    <option>Select</option>
                     <option value="">All</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
@@ -80,4 +80,4 @@ const Graph1 = () => {
     )
 }
 
-export default Graph1
+export default withAuth(Graph1);

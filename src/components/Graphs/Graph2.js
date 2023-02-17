@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
+import auth from '../../Auth';
+import withAuth from '../../WithAuth';
 
-const Graph1 = () => {
+const Graph2 = () => {
 
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BASE_URL}api/category/60`,{
-            headers: {"x-auth-token": process.env.REACT_APP_TOKEN}
+        fetch(`${process.env.REACT_APP_BASE_URL}api/category`, {
+            headers: { "x-auth-token": auth.getToken() }
         })
             .then(response => response.json())
             .then(data => {
@@ -29,7 +31,7 @@ const Graph1 = () => {
         return <div>Loading...</div>;
     }
 
-    const chartData = [['Category Name','Total Amount']].concat(data);
+    const chartData = [['Category Name', 'Total Amount']].concat(data);
     const options = {
 
         title: 'Total Amount present in category',
@@ -61,4 +63,4 @@ const Graph1 = () => {
     )
 }
 
-export default Graph1
+export default withAuth(Graph2);

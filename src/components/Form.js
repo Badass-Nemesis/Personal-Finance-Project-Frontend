@@ -1,8 +1,8 @@
-
 import TextField from '@mui/material/TextField';
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import auth from '../Auth';
+import withAuth from '../WithAuth';
 
 function MyForm() {
     const [inputValue1, setInputValue1] = useState('');
@@ -58,21 +58,21 @@ function MyForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .post('http://localhost:5000/api/transactions/add/manual', {
-                dateAndTime: inputValue1,
-                narration: inputValue2,
-                amount: inputValue3,
-                transactionType: inputValue4,
-                referenceNumber: inputValue5,
-                availableBalance: inputValue6,
-                beneficiaryAccountNumber: inputValue7,
-                beneficiaryName: inputValue8,
-                remitterAccountNumber: inputValue9,
-                remitterName: inputValue10
-            })
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/transactions/add/manual`, {
+            dateAndTime: inputValue1,
+            narration: inputValue2,
+            amount: inputValue3,
+            transactionType: inputValue4,
+            referenceNumber: inputValue5,
+            availableBalance: inputValue6,
+            beneficiaryAccountNumber: inputValue7,
+            beneficiaryName: inputValue8,
+            remitterAccountNumber: inputValue9,
+            remitterName: inputValue10
+        }, { headers: { "x-auth-token": auth.getToken() } })
             .then((response) => {
                 console.log(response.data);
+                window.location.reload();
             });
     };
 
@@ -208,9 +208,4 @@ function MyForm() {
     );
 }
 
-export default MyForm;
-
-// import React from 'react';
-// import axios from 'axios';
-
-// export default 
+export default withAuth(MyForm);

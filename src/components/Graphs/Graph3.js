@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 import moment from 'moment';
+import auth from '../../Auth';
+import withAuth from '../../WithAuth';
 
 function App() {
     const [catName, setCatName] = useState([]);
@@ -8,7 +10,7 @@ function App() {
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}api/category/1`, {
-            headers: { "x-auth-token": process.env.REACT_APP_TOKEN }
+            headers: { "x-auth-token": auth.getToken() }
         })
             .then(response => response.json())
             .then(data => {
@@ -24,7 +26,7 @@ function App() {
 
         let currMonth = moment().month();
         fetch(`${process.env.REACT_APP_BASE_URL}api/category/get/threemonths`, {
-            headers: { "x-auth-token": process.env.REACT_APP_TOKEN }
+            headers: { "x-auth-token": auth.getToken() }
         })
             .then(response => response.json())
             .then(data => {
@@ -82,4 +84,4 @@ function App() {
     );
 }
 
-export default App;
+export default withAuth(App);
