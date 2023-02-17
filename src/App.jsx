@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Transactions from './components/Transactions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
@@ -14,16 +14,14 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/Transactions' element={<Transactions />} />
-          <Route path='/Logout' element={<Logout />} />
-          <Route path='/Category' element={<Category />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Register' element={<Register />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/Transactions' element={<Transactions />} />
+        <Route path='/Logout' element={<Logout />} />
+        <Route path='/Category' element={<Category />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/Register' element={<Register />} />
+      </Routes>
     </div>
   );
 }
