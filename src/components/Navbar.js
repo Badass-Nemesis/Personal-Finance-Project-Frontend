@@ -67,7 +67,7 @@ const ButtonPage = () => {
 			{[false].map((expand) => (
 				<Navbar key={expand} bg="light" expand={expand} className="mb-3">
 					<Container fluid>
-						<Navbar.Brand href="/Personal-Finance-Project-Frontend/#/">Personal Finance</Navbar.Brand>
+						<Navbar.Brand href="/#/">Personal Finance</Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 							id={`offcanvasNavbar-expand-${expand}`}
