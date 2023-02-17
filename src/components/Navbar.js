@@ -7,7 +7,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Logout from './Logout';
 // import { useNavigate } from 'react-router-dom';
 // import { Route } from 'react-router-dom';
 //import Addnewtransaction from './Addnewtransaction';
@@ -59,6 +58,7 @@ const ButtonPage = () => {
 									<Nav.Link href="/Home">Home</Nav.Link>
 									<Nav.Link href="/Login">Login</Nav.Link>
 									<Nav.Link href="/Logout">Logout</Nav.Link>
+									<Nav.Link href="/register">Register</Nav.Link>
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
 									<Nav.Link href="/Transactions">Transactions</Nav.Link>
 									<NavDropdown
