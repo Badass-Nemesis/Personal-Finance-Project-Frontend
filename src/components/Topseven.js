@@ -61,6 +61,24 @@ function App() {
             });
     }, []);
 
+    const handleSubmit = async (objectId) => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/category/pushTransactions`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'x-auth-token': auth.getToken()
+                },
+                body: JSON.stringify({ name: selectedName, transactions: objectId }),
+            });
+            await response.json();
+            //console.log(data);
+            window.location.reload();
+        } catch (error) {
+            // console.error(error);
+        }
+    };
+
     return (
         <div>
             {/* {post.map((item, index) => (
