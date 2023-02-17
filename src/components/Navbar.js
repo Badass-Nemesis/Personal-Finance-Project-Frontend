@@ -67,7 +67,7 @@ const ButtonPage = () => {
 			{[false].map((expand) => (
 				<Navbar key={expand} bg="light" expand={expand} className="mb-3">
 					<Container fluid>
-						<Navbar.Brand href="/Personal-Finance-Project-Frontend">Personal Finance</Navbar.Brand>
+						<Navbar.Brand href="/">Personal Finance</Navbar.Brand>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 						<Navbar.Offcanvas
 							id={`offcanvasNavbar-expand-${expand}`}
@@ -81,13 +81,13 @@ const ButtonPage = () => {
 							</Offcanvas.Header>
 							<Offcanvas.Body>
 								<Nav className="justify-content-end flex-grow-1 pe-3">
-									<Link to="/">Home</Link>
-									<Link to="/Login">Login</Link>
-									<Link to="/Logout">Logout</Link>
-									<Link to="/Register">Register</Link>
+									<Button><Link to="/">Home</Link></Button><br />
+									<Button><Link to="/Login">Login</Link></Button><br />
+									<Button><Link to="/Logout">Logout</Link></Button><br />
+									<Button><Link to="/Register">Register</Link></Button><br />
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
-									<Link to="/Transactions">Transactions</Link>
-									<Link to="/Category">Categories</Link>
+									<Button><Link to="/Transactions">Transactions</Link></Button><br />
+									<Button><Link to="/Category">Categories</Link></Button><br />
 								</Nav>
 								{/* <Form className="d-flex">
 									<Form.Control

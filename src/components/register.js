@@ -24,7 +24,7 @@ const Register = () => {
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user`, { name: name, email: email, password: password })
             .then((response) => {
                 // auth.setToken(response.data);
-                window.location = '/Personal-Finance-Project-Frontend/';
+                window.location = '/';
             })
             .catch((error) => {
                 setErrorMessage(error.response.data.message);
