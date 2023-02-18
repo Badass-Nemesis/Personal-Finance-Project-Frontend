@@ -21,6 +21,7 @@ import axios from 'axios';
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
+import '../App.css';
 
 const ButtonPage = () => {
 	const [showPopup, setShowPopup] = useState(false);
@@ -81,13 +82,13 @@ const ButtonPage = () => {
 							</Offcanvas.Header>
 							<Offcanvas.Body>
 								<Nav className="justify-content-end flex-grow-1 pe-3">
-									<Button><Link to="/">Home</Link>Home</Button><br />
-									<Button><Link to="/Login">Login</Link>Login</Button><br />
-									<Button><Link to="/Logout">Logout</Link>Logout</Button><br />
-									<Button><Link to="/Register">Register</Link>Register</Button><br />
+									<Link to="/"><Button className='button'>Home</Button></Link><br />
+									<Link to="/Login"><Button className='button'>Login</Button></Link><br />
+									<Link to="/Logout"><Button className='button'>Logout</Button></Link><br />
+									<Link to="/Register"><Button className='button'>Register</Button></Link><br />
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
-									<Button><Link to="/Transactions">Transactions</Link>Transactions</Button><br />
-									<Button><Link to="/Category">Categories</Link>Categories</Button><br />
+									<Link to="/Transactions"><Button className='button'>Transactions</Button></Link><br />
+									<Link to="/Category"><Button className='button'>Categories</Button></Link><br />
 								</Nav>
 								{/* <Form className="d-flex">
 									<Form.Control
@@ -98,14 +99,13 @@ const ButtonPage = () => {
 									/>
 									<Button variant="outline-success">Search</Button>
 								</Form> */}
-								<br />
-								<Button variant="outline-success" onClick={handleClickLink}>
+								<Button className='button' variant="outline-success" onClick={handleClickLink}>
 									{isLoading ? 'Loading...' : 'Gmail'}
 								</Button>
 								<br />
 								<br />
 								{/* <Button variant="outline-success" onClick={<Popup />} ></Button> */}
-								<Button variant="outline-success" onClick={handleClick}>Advice</Button>
+								<Button className='button' variant="outline-success" onClick={handleClick}>Advice</Button>
 								{showPopup && (
 									<div className="popup">
 										<h2>Advice</h2>
@@ -125,7 +125,8 @@ const ButtonPage = () => {
 						</Navbar.Offcanvas>
 					</Container>
 				</Navbar>
-			))}
+			))
+			}
 		</>
 	);
 };
