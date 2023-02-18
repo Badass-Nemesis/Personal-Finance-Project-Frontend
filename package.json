@@ -19,7 +19,6 @@
     "config": "^3.3.9",
     "date-format": "^4.0.14",
     "dotenv": "^16.0.3",
-    "gh-pages": "^5.0.0",
     "moment": "^2.29.4",
     "or": "^0.2.0",
     "react": "^18.2.0",
@@ -59,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
