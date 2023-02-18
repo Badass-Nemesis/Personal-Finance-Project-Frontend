@@ -81,13 +81,13 @@ const ButtonPage = () => {
 							</Offcanvas.Header>
 							<Offcanvas.Body>
 								<Nav className="justify-content-end flex-grow-1 pe-3">
-									<Button><Link to="/">Home</Link></Button><br />
-									<Button><Link to="/Login">Login</Link></Button><br />
-									<Button><Link to="/Logout">Logout</Link></Button><br />
-									<Button><Link to="/Register">Register</Link></Button><br />
+									<Button><Link to="/">Home</Link>Home</Button><br />
+									<Button><Link to="/Login">Login</Link>Login</Button><br />
+									<Button><Link to="/Logout">Logout</Link>Logout</Button><br />
+									<Button><Link to="/Register">Register</Link>Register</Button><br />
 									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
-									<Button><Link to="/Transactions">Transactions</Link></Button><br />
-									<Button><Link to="/Category">Categories</Link></Button><br />
+									<Button><Link to="/Transactions">Transactions</Link>Transactions</Button><br />
+									<Button><Link to="/Category">Categories</Link>Categories</Button><br />
 								</Nav>
 								{/* <Form className="d-flex">
 									<Form.Control
