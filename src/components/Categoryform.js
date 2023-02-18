@@ -25,7 +25,6 @@ function MyForm() {
                 Name :
                 <TextField
                     type='text'
-                    // label="Date and Time"
                     name="Name"
                     value={inputValue1}
                     onChange={handleChange1}
