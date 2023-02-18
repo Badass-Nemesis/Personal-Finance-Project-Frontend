@@ -86,7 +86,6 @@ const ButtonPage = () => {
 									<Link to="/Login"><Button className='button'>Login</Button></Link><br />
 									<Link to="/Logout"><Button className='button'>Logout</Button></Link><br />
 									<Link to="/Register"><Button className='button'>Register</Button></Link><br />
-									{/* <button onClick={()=>navigate('/Transactions')}>Go to Destination Page</button> */}
 									<Link to="/Transactions"><Button className='button'>Transactions</Button></Link><br />
 									<Link to="/Category"><Button className='button'>Categories</Button></Link><br />
 								</Nav>
