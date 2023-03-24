@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/css/main.e5930c36.css",
-    "main.js": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/js/main.f91ee88f.js",
+    "main.js": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/js/main.57835b71.js",
     "index.html": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/index.html",
     "main.e5930c36.css.map": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/css/main.e5930c36.css.map",
-    "main.f91ee88f.js.map": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/js/main.f91ee88f.js.map"
+    "main.57835b71.js.map": "https://badass-nemesis.github.io/Personal-Finance-Project-Frontend/static/js/main.57835b71.js.map"
   },
   "entrypoints": [
     "static/css/main.e5930c36.css",
-    "static/js/main.f91ee88f.js"
+    "static/js/main.57835b71.js"
   ]
 }
