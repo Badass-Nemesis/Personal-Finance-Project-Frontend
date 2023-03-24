@@ -46,8 +46,7 @@ const ButtonPage = () => {
 
 	const handleClick = () => {
 		async function datasetting() {
-			await fetch(`${process.env.REACT_APP_BASE_URL}api/chatadvice/ask`, {
-				method: "GET",
+			await axios.get(`${process.env.REACT_APP_BASE_URL}api/chatadvice/ask`, {
 				headers: { 'x-auth-token': auth.getToken() }
 			}).then(response => {
 				// console.log(response.data);
